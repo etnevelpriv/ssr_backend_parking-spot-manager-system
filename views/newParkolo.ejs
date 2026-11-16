@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uj parkolo</title>
+</head>
+
+<body>
+    <form method="post">
+        <div class="input-group">
+            <label for="rendszamInput">Rendszam</label>
+            <input type="text" name="rendszam" id="rendszamInput">
+            <%if (locals.rendszamErr){%>
+                <p>
+                    <%= locals.rendszamErr %>
+                </p>
+                <%}%>
+        </div>
+        <div class="input-group">
+            <label for="tulajdonosInput">Tulajdonos</label>
+            <input type="text" name="tulajdonos" id="tulajdonosInput">
+            <%if (locals.tulajdonosErr){%>
+                <p>
+                    <%= locals.tulajdonosErr %>
+                </p>
+                <%}%>
+        </div>
+        <div class="input-group">
+            <label for="idotartamInput">Idotartam</label>
+            <input type="number" name="idotartam" id="idotartamInput">
+            <%if (locals.idotartamErr){%>
+                <p>
+                    <%= locals.idotartamErr %>
+                </p>
+                <%}%>
+        </div>
+        <div class="input-group">
+            <label for="fizetveInput">Fizetve</label>
+            <input type="checkbox" name="fizetve" id="fizetveInput">
+        </div>
+        <input type="submit" value="Letrehozas">
+        <%if (locals.err){%>
+            <p>
+                <%= locals.err %>
+            </p>
+            <%}%>
+    </form>
+</body>
+
+</html>

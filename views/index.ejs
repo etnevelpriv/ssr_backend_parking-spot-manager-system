@@ -4,10 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Parkolok</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <ul>
+        <li>
+            <a href="/">Fooldal</a>
+        </li>
+        <li>
+            <a href="/new-parkolo">Uj parkolo</a>
+        </li>
+
+    </ul>
     <table>
         <thead>
             <tr>
@@ -27,7 +37,7 @@
         </thead>
         <tbody>
             <%parkolok.forEach((parkolo)=>{%>
-                <tr>
+                <tr class="<%= parkolo.fizetve ? 'payed' : 'not-payed' %>">
                     <td>
                         <%=parkolo.id%>
                     </td>
