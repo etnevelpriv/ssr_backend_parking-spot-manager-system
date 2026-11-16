@@ -8,6 +8,16 @@
 </head>
 
 <body>
+    <ul>
+        <li>
+            <a href="/">Fooldal</a>
+        </li>
+        <li>
+            <a href="/new-parkolo">Uj parkolo</a>
+        </li>
+
+    </ul>
+
     <form method="post">
         <div class="input-group">
             <label for="rendszamInput">Rendszam</label>
@@ -38,7 +48,7 @@
         </div>
         <div class="input-group">
             <label for="fizetveInput">Fizetve</label>
-            <input type="checkbox" name="fizetve" id="fizetveInput" <%=values.fizetve ? "checked" : ""%>>
+            <input type="checkbox" name="fizetve" id="fizetveInput" <%=values.fizetve ? "checked" : "" %>>
         </div>
         <input type="submit" value="Letrehozas">
         <%if (locals.err){%>
