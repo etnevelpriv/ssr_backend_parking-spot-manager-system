@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <%=szoveg%>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Rendszam
+                </th>
+                <th>
+                    Tulajdonos
+                </th>
+                <th>
+                    Idotartam
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <%parkolok.forEach((parkolo)=>{%>
+                <tr>
+                    <td>
+                        <%=parkolo.id%>
+                    </td>
+                    <td>
+                        <%=parkolo.rendszam%>
+                    </td>
+                    <td>
+                        <%=parkolo.tulajdonos%>
+                    </td>
+                    <td>
+                        <%=parkolo.idotartam%>
+                    </td>
+                </tr>
+                <%})%>
+        </tbody>
+    </table>
 </body>
+
 </html>

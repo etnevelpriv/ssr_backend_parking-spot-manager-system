@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { createPool, QueryResult } from 'mysql2/promise';
+import { createPool, Pool } from 'mysql2/promise';
 import { Parkolo_interface } from './Models/Interfaces/Parkolo.interface.js';
 
 @Injectable()
 export class AppService {
-  databasePool;
+  databasePool : Pool;
   constructor() {
     this.databasePool = createPool({
       host: "127.0.0.1",
@@ -15,7 +15,7 @@ export class AppService {
     })
   }
   async getAllParkolasok() {
-    const response = await this.databasePool.execute("SELECT * FROM parkolasok") as QueryResult;
+    const [response] = await this.databasePool.execute("SELECT * FROM parkolas");
     const data = response as Parkolo_interface[];
     return data;
   };
