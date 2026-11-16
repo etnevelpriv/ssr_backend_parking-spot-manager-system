@@ -23,7 +23,8 @@ export class AppController {
       err: null,
       rendszamErr: null,
       tulajdonosErr: null,
-      idotartamErr: null
+      idotartamErr: null,
+      values: {}
     }
 
   }
@@ -41,30 +42,42 @@ export class AppController {
     const idotartamErrMess = "Az idotartam pozitiv egesz szam lehet es maximum 24 oran keresztul tarthat"
     let isFizetveErr = false;
     const fizetveErrMess = "A fizetve csak logikai ertek lehet"
+    let isAllValid = true;
 
-    const rendszamRegex = new RegExp(/[a-z]{2} [a-z]{2}-\d{3}/i)
+    const rendszamRegex = new RegExp(/^[a-z]{2} [a-z]{2}-\d{3}$/i)
     if (!rendszamRegex.test(parkoloDTO.rendszam)) {
       isRendszamErr = true;
       isErr = true;
+      isAllValid = false;
     };
 
     if (parkoloDTO.tulajdonos.trim().length < 6) {
       isTulajdonosErr = true;
       isErr = true;
+      isAllValid = false;
     };
 
-    if (Number(parkoloDTO.idotartam) < 0 || Number(parkoloDTO.idotartam) > 24 || Number(parkoloDTO.idotartam) == null || Number.isNaN(Number(parkoloDTO.idotartam))) {
+    if (Number(parkoloDTO.idotartam) < 1 || Number(parkoloDTO.idotartam) % 1 != 0 || Number(parkoloDTO.idotartam) > 24 || Number(parkoloDTO.idotartam) == null || Number.isNaN(Number(parkoloDTO.idotartam))) {
       isIdotartamErr = true;
       isErr = true;
+      isAllValid = false;
     }
 
-    console.log(parkoloDTO)
+    if (isAllValid) {
+      await this.appService.insertNewParkolas(parkoloDTO.rendszam, parkoloDTO.tulajdonos, Number(parkoloDTO.idotartam), Boolean(parkoloDTO.fizetve))
+    }
 
     return {
       err: isErr ? errMess : null,
       rendszamErr: isRendszamErr ? rendszamErrMess : null,
       tulajdonosErr: isTulajdonosErr ? tulajdonosErrMess : null,
-      idotartamErr: isIdotartamErr ? idotartamErrMess : null
+      idotartamErr: isIdotartamErr ? idotartamErrMess : null,
+      values: isAllValid ? {} : {
+        rendszam: parkoloDTO.rendszam,
+        tulajdonos: parkoloDTO.tulajdonos,
+        idotartam: Number(parkoloDTO.idotartam),
+        fizetve: Boolean(parkoloDTO.fizetve)
+      }
     }
   }
 

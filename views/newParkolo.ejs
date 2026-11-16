@@ -11,7 +11,7 @@
     <form method="post">
         <div class="input-group">
             <label for="rendszamInput">Rendszam</label>
-            <input type="text" name="rendszam" id="rendszamInput">
+            <input type="text" name="rendszam" id="rendszamInput" value="<%= values.rendszam ?? ''%>">
             <%if (locals.rendszamErr){%>
                 <p>
                     <%= locals.rendszamErr %>
@@ -20,7 +20,7 @@
         </div>
         <div class="input-group">
             <label for="tulajdonosInput">Tulajdonos</label>
-            <input type="text" name="tulajdonos" id="tulajdonosInput">
+            <input type="text" name="tulajdonos" id="tulajdonosInput" value="<%= values.tulajdonos ?? ''%>">
             <%if (locals.tulajdonosErr){%>
                 <p>
                     <%= locals.tulajdonosErr %>
@@ -29,7 +29,7 @@
         </div>
         <div class="input-group">
             <label for="idotartamInput">Idotartam</label>
-            <input type="number" name="idotartam" id="idotartamInput">
+            <input type="number" name="idotartam" id="idotartamInput" value="<%= values.idotartam ?? ''%>">
             <%if (locals.idotartamErr){%>
                 <p>
                     <%= locals.idotartamErr %>
@@ -38,7 +38,7 @@
         </div>
         <div class="input-group">
             <label for="fizetveInput">Fizetve</label>
-            <input type="checkbox" name="fizetve" id="fizetveInput">
+            <input type="checkbox" name="fizetve" id="fizetveInput" <%=values.fizetve ? "checked" : ""%>>
         </div>
         <input type="submit" value="Letrehozas">
         <%if (locals.err){%>
